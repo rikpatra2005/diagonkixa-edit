@@ -1,7 +1,424 @@
-/* ========================================== */
-/* PROFESSIONAL AI CHATBOT WIDGET */
-/* ========================================== */
+/* =========================================
+   1. GLOBAL & TYPOGRAPHY
+   ========================================= */
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+    color: #333;
+    overflow-x: hidden;
+    position: relative;
+}
 
+/* =========================================
+   2. 3D BACKGROUND CANVAS
+   ========================================= */
+#bg-robot-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* =========================================
+   3. GLASSMORPHISM SECTIONS
+   ========================================= */
+section, .footer {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-section {
+    background: rgba(255, 255, 255, 0.4);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* =========================================
+   4. NAVBAR & BRANDING (UPDATED AS REQUESTED)
+   ========================================= */
+.navbar {
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 10;
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    text-decoration: none;
+}
+
+/* Circular white background for logo like old website */
+.logo-wrapper {
+    width: 45px;
+    height: 45px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-wrapper .logo {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Brand text color: Blue for "Diagonk", White for "ixa" */
+.brand-logo {
+    color: #00d2ff !important;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 0;
+}
+
+.brand-highlight {
+    color: #ffffff !important;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #00d2ff !important;
+}
+
+/* =========================================
+   5. HERO SECTION
+   ========================================= */
+.hero-tag {
+    display: inline-block;
+    background: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: #475569;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+}
+
+/* =========================================
+   6. TYPOGRAPHY & SECTION HEADERS
+   ========================================= */
+.section-tag {
+    display: inline-block;
+    color: #0d6efd;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 15px;
+}
+
+.section-description {
+    font-size: 1.05rem;
+    color: #64748b;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   7. CARDS & COMPONENTS
+   ========================================= */
+.about-card, .feature-card, .mission-card, .vision-card, 
+.focus-card, .product-card, .ideal-card, .step-card, 
+.team-card, .contact-card, .cta-box {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover, .ideal-card:hover, .team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(13, 110, 253, 0.15);
+}
+
+.about-text {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.about-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.about-card ul li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: #334155;
+    font-weight: 500;
+}
+
+.about-card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #0d6efd;
+    font-weight: bold;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.focus-image, .ideal-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+.product-badge {
+    display: inline-block;
+    background: #0d6efd;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.product-features {
+    list-style: none;
+    padding-left: 0;
+    margin: 20px 0;
+}
+
+.product-features li {
+    padding: 6px 0;
+    padding-left: 25px;
+    position: relative;
+    color: #475569;
+}
+
+.product-features li::before {
+    content: "•";
+    color: #0d6efd;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -5px;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: #0d6efd;
+    color: white;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.team-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid rgba(13, 110, 253, 0.1);
+}
+
+.team-card.leadership .team-image {
+    width: 120px;
+    height: 120px;
+}
+
+.team-role {
+    display: block;
+    color: #0d6efd;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* =========================================
+   8. CONTACT & FOOTER
+   ========================================= */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    color: #475569;
+}
+
+.contact-item i {
+    color: #0d6efd;
+    font-size: 1.2rem;
+}
+
+.contact-item a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.contact-item a:hover {
+    color: #0d6efd;
+}
+
+.footer {
+    background: rgba(15, 23, 42, 0.95) !important;
+    color: #cbd5e1;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer h5 {
+    color: white;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #00d2ff;
+}
+
+.footer-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================
+   9. BACK TO TOP BUTTON
+   ========================================= */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 100;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+}
+
+.back-to-top:hover {
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   10. CUSTOM BUTTONS (UPDATED AS REQUESTED)
+   ========================================= */
+/* Explore Product Button - Solid, prominent like old btn-primary */
+.btn-explore-product {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+}
+
+.btn-explore-product:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.5);
+    color: white;
+    background: linear-gradient(135deg, #0b5ed7 0%, #094a9c 100%);
+}
+
+/* Contact Us Button - Clean outline */
+.btn-custom-outline {
+    border: 2px solid #0d6efd;
+    color: #0d6efd;
+    background: transparent;
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-custom-outline:hover {
+    background: #0d6efd;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   11. AI CHATBOT WIDGET
+   ========================================= */
 .ai-chatbot-widget {
     position: fixed;
     bottom: 30px;
@@ -10,589 +427,6 @@
     font-family: 'Outfit', sans-serif;
 }
 
-
-/* ============================================ */
-/* NAVBAR */
-/* ============================================ */
-.brand-logo:hover .brand-highlight{
-    text-shadow:0 0 12px rgba(40,184,255,.5);
-} 
-
-.brand-logo{
-    font-family:'Outfit',sans-serif;
-    font-size:1.5rem;
-    font-weight:800;
-    color:#000036;
-    letter-spacing:-0.03em;
-}
-
-.brand-highlight{
-    color:#28B8FF;
-}
-
-.brand-logo{
-    transition:all .3s ease;
-}
-
-.brand-logo:hover{
-    transform:translateY(-1px);
-    cursor: default;
-}
-
-
-.navbar{
-    padding:20px 0;
-    border-bottom:1px solid var(--border);
-
-    background:rgba(5,13,43,.95);
-
-    backdrop-filter:blur(10px);
-    
-    position:fixed;
-
-    top:0;
-
-    left:0;
-
-    width:100%;
-
-    z-index:1000;
-}
-
-.nav-link{
-
-    position:relative;
-    display:inline-block;
-
-    margin-left:10px;
-
-    transition:.3s;
-}
-
-.nav-link:hover{
-
-    color:var(--secondary) !important;
-}
-
-.nav-link::after{
-
-    content:"";
-
-    position:absolute;
-
-    bottom:0;
-
-    left:0;
-
-    width:0;
-
-    height:2px;
-
-    background:var(--secondary);
-
-    transition:.3s;
-}
-
-.nav-link:hover::after{
-
-    width:100%;
-}
-
-.nav-link.active{
-
-    color:var(--secondary) !important;
-
-    font-weight:600;
-}
-
-.nav-link.active::after{
-
-    width:100%;
-}
-
-
-.logo-wrapper{
-
-    width:52px;
-    height:52px;
-
-    background:white;
-
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    flex-shrink:0;
-}
-
-.logo{
-
-    width:36px;
-    height:36px;
-    object-fit:contain;
-}
-
-
-/* ============================================ */
-/* HERO SECTION */
-/* ============================================ */
-.hero-section{
-    min-height:90vh;
-    display:flex;
-    align-items:center;
-    padding-top:120px;
-}
-
-.hero-tag{
-    color:var(--secondary);
-    font-weight:600;
-    letter-spacing:2px;
-}
-
-.hero-title{
-    font-size:4rem;
-    font-weight:700;
-    line-height:1.1;
-    margin-top:20px;
-}
-
-.hero-description{
-    margin-top:25px;
-    color:#9ca3af;
-    font-size:1.1rem;
-    line-height:1.8;
-}
-
-.hero-buttons{
-    margin-top:35px;
-}
-
-.hero-image{
-    filter:
-        drop-shadow(0 0 20px rgba(106,77,255,.5))
-        drop-shadow(0 0 50px rgba(40,184,255,.3));
-}
-
-
- /*<!-- Change background and 
- border color directly of explore product -->*/
-.btn-custom-primary {
-    background-color: #03195a; 
-    border-color: #03195a;
-    color: white;
-}
-.btn-custom-primary:hover {
-    background-color: #03195a;
-    border-color: #03195a;
-    color: white;
-}
-
-.btn-custom-outline {
-    border-color: #03195a;
-    color: #03195a;
-}
-.btn-custom-outline:hover {
-    background-color: #03195a;
-    color: white;
-}
-
-
-
-/* ==========================
-   MISSION VISION
-========================== */
-
-.mission-card,
-.vision-card{
-
-    height:100%;
-
-    padding:40px;
-
-    border-radius:20px;
-
-    border:1px solid rgba(255,255,255,.08);
-
-    transition:.3s;
-}
-
-.mission-card{
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(106,77,255,.15),
-            rgba(106,77,255,.05)
-        );
-}
-
-.vision-card{
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(40,184,255,.15),
-            rgba(40,184,255,.05)
-        );
-}
-
-.mission-card:hover,
-.vision-card:hover{
-
-    transform:translateY(-6px);
-}
-
-.mission-card p,
-.vision-card p{
-
-    margin-top:20px;
-    color:var(--text-muted);
-    line-height:1.8;
-}
-
-
-/* ==========================
-   FOCUS AREAS
-========================== */
-
-.focus-card{
-
-    background:rgba(255,255,255,.03);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:20px;
-
-    padding:35px;
-
-    height:100%;
-
-    transition:.3s;
-}
-
-.focus-card:hover{
-
-    transform:translateY(-8px);
-
-    border-color:var(--secondary);
-
-    box-shadow:
-        0 0 25px rgba(40,184,255,.15);
-}
-
-.focus-icon{
-
-    font-size:2.5rem;
-
-    margin-bottom:20px;
-}
-
-.focus-card p{
-
-    color:var(--text-muted);
-
-    margin-top:15px;
-}
-
-.focus-image{
-
-    width:100%;
-
-    height:220px;
-
-    object-fit:cover;
-
-    border-radius:15px;
-
-    margin-bottom:20px;
-}
-
-
-/* ==========================
-   PRODUCTS
-========================== */
-
-.product-card{
-
-    background:rgba(255,255,255,.03);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:24px;
-
-    padding:40px;
-}
-
-.product-image{
-
-    max-height:250px;
-}
-
-.product-badge{
-
-    background:
-        rgba(40,184,255,.15);
-
-    color:#28B8FF;
-
-    padding:8px 16px;
-
-    border-radius:50px;
-
-    font-size:.9rem;
-}
-
-.product-features{
-
-    list-style:none;
-    padding:0;
-    margin-top:20px;
-}
-
-.product-features li{
-
-    margin-bottom:12px;
-    color:var(--text-muted);
-}
-
-.product-features li::before{
-
-    content:"✓";
-    color:var(--secondary);
-
-    margin-right:10px;
-
-    font-weight:bold;
-}
-
-/* ==========================
-   IDEAL FOR
-========================== */
-
-.ideal-card{
-
-    background:rgba(255,255,255,.03);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:24px;
-
-    padding:35px 25px;
-
-    text-align:center;
-
-    height:100%;
-
-    transition:.3s;
-}
-
-.ideal-card:hover{
-
-    transform:translateY(-8px);
-
-    border-color:var(--secondary);
-
-    box-shadow:
-        0 0 25px rgba(40,184,255,.15);
-}
-
-.ideal-icon{
-
-    font-size:3rem;
-
-    margin-bottom:20px;
-}
-
-.ideal-card h4{
-
-    margin-bottom:15px;
-}
-
-.ideal-card p{
-
-    color:var(--text-muted);
-
-    margin-bottom:0;
-}
-
-.ideal-image{
-
-    width:100%;
-
-    height:200px;
-
-    object-fit:cover;
-
-    border-radius:15px;
-
-    margin-bottom:20px;
-}
-
-.focus-card,
-.ideal-card{
-
-    padding:20px;
-}
-
-.focus-card:hover img,
-.ideal-card:hover img{
-
-    transform:scale(1.05);
-}
-
-.focus-image,
-.ideal-image{
-
-    transition:.4s;
-}
-
-.focus-card,
-.ideal-card{
-
-    overflow:hidden;
-}
-
-/* ==========================
-   HOW WE WORK
-========================== */
-
-.step-card{
-
-    background:rgba(255,255,255,.03);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:20px;
-
-    padding:30px;
-
-    height:100%;
-}
-
-.step-number{
-
-    width:60px;
-    height:60px;
-
-    border-radius:50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6A4DFF,
-            #28B8FF
-        );
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    margin:auto;
-
-    font-weight:700;
-
-    margin-bottom:20px;
-}
-
-/* ======================
-   TEAM
-====================== */
-
-.team-section{
-
-    padding:100px 0;
-}
-
-.team-card{
-
-    background:rgba(255,255,255,.03);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:20px;
-
-    text-align:center;
-
-    padding:25px;
-
-    height:100%;
-
-    transition:.3s;
-}
-
-.team-card:hover{
-
-    transform:translateY(-8px);
-
-    border-color:var(--secondary);
-}
-
-.team-image{
-
-    width:120px;
-
-    height:120px;
-
-    border-radius:50%;
-
-    object-fit:cover;
-
-    margin-bottom:20px;
-
-    border:3px solid var(--secondary);
-}
-
-.team-role{
-
-    color:var(--secondary);
-
-    font-size:.95rem;
-}
-
-.leadership{
-
-    padding:35px;
-}
-
-/* ==========================
-   CTA
-========================== */
-
-.cta-box{
-
-    text-align:center;
-
-    padding:70px 30px;
-
-    border-radius:30px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(106,77,255,.25),
-            rgba(40,184,255,.20)
-        );
-
-    border:1px solid rgba(255,255,255,.08);
-}
-
-.cta-box p{
-
-    max-width:700px;
-
-    margin:20px auto;
-
-    color:var(--text-muted);
-}
-
-
-
-
-
-
-/* Toggle Button */
 .chatbot-toggle-btn {
     width: 70px;
     height: 70px;
@@ -623,7 +457,6 @@
     height: 100%;
 }
 
-/* Chat Window */
 .chatbot-window {
     position: absolute;
     bottom: 85px;
@@ -633,7 +466,6 @@
     max-height: calc(100vh - 120px);
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border-radius: 24px;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
     display: flex;
@@ -652,7 +484,6 @@
     pointer-events: all;
 }
 
-/* Chat Header */
 .chatbot-header {
     background: white;
     padding: 0;
@@ -663,7 +494,6 @@
     flex-shrink: 0;
 }
 
-/* Robot Display Area */
 .chatbot-robot-display {
     width: 100%;
     height: 180px;
@@ -689,7 +519,147 @@
     min-height: 0;
 }
 
-/* Close Button */
+.chatbot-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #f8f9fa;
+    min-height: 0;
+}
+
+.chatbot-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 3px;
+}
+
+.message {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.5;
+    animation: msgIn 0.3s ease;
+}
+
+@keyframes msgIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bot-message {
+    align-self: flex-start;
+    background: white;
+    color: #333;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.user-message {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #0d6efd, #0056b3);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.faq-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #f8f9fa;
+    flex-shrink: 0;
+}
+
+.faq-btn {
+    padding: 8px 14px;
+    background: white;
+    border: 1px solid #0d6efd;
+    color: #0d6efd;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.faq-btn:hover {
+    background: #0d6efd;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.chatbot-input-area {
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.chatbot-input-area input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.chatbot-input-area input:focus {
+    border-color: #0d6efd;
+}
+
+.chatbot-input-area button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0d6efd, #0056b3);
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.chatbot-input-area button:hover {
+    transform: scale(1.1);
+}
+
+.typing-indicator {
+    display: flex;
+    gap: 5px;
+    padding: 12px 16px;
+    background: white;
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: #0d6efd;
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typingBounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
 .chatbot-close {
     position: absolute;
     top: 10px;
@@ -713,191 +683,10 @@
     background: rgba(0, 0, 0, 0.15);
 }
 
-/* Messages Area */
-.chatbot-messages {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    background: #f8f9fa;
-    min-height: 0;
-}
-
-.chatbot-messages::-webkit-scrollbar {
-    width: 6px;
-}
-
-.chatbot-messages::-webkit-scrollbar-thumb {
-    background: #ddd;
-    border-radius: 3px;
-}
-
-.chatbot-messages::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-/* Message Bubbles */
-.message {
-    max-width: 85%;
-    padding: 12px 16px;
-    border-radius: 18px;
-    font-size: 14px;
-    line-height: 1.5;
-    animation: msgIn 0.3s ease;
-    word-wrap: break-word;
-}
-
-@keyframes msgIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(10px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-.bot-message {
-    align-self: flex-start;
-    background: white;
-    color: #333;
-    border-bottom-left-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.user-message {
-    align-self: flex-end;
-    background: linear-gradient(135deg, #0d6efd, #0056b3);
-    color: white;
-    border-bottom-right-radius: 4px;
-}
-
-/* FAQ Buttons */
-.faq-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 10px 20px;
-    background: #f8f9fa;
-    flex-shrink: 0;
-}
-
-.faq-btn {
-    padding: 8px 14px;
-    background: white;
-    border: 1px solid #0d6efd;
-    color: #0d6efd;
-    border-radius: 20px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-weight: 500;
-    font-family: 'Outfit', sans-serif;
-}
-
-.faq-btn:hover {
-    background: #0d6efd;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
-}
-
-/* Input Area */
-.chatbot-input-area {
-    padding: 15px;
-    background: white;
-    border-top: 1px solid #eee;
-    display: flex;
-    gap: 10px;
-    flex-shrink: 0;
-}
-
-.chatbot-input-area input {
-    flex: 1;
-    padding: 12px 16px;
-    border: 2px solid #e0e0e0;
-    border-radius: 25px;
-    outline: none;
-    font-size: 14px;
-    transition: border-color 0.2s;
-    font-family: 'Outfit', sans-serif;
-}
-
-.chatbot-input-area input:focus {
-    border-color: #0d6efd;
-}
-
-.chatbot-input-area input::placeholder {
-    color: #999;
-}
-
-.chatbot-input-area button {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #0d6efd, #0056b3);
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.chatbot-input-area button:hover {
-    transform: scale(1.1);
-}
-
-/* Typing Indicator */
-.typing-indicator {
-    display: flex;
-    gap: 5px;
-    padding: 12px 16px;
-    background: white;
-    border-radius: 18px;
-    border-bottom-left-radius: 4px;
-    align-self: flex-start;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.typing-dot {
-    width: 8px;
-    height: 8px;
-    background: #0d6efd;
-    border-radius: 50%;
-    animation: typingBounce 1.4s infinite ease-in-out both;
-}
-
-.typing-dot:nth-child(1) { 
-    animation-delay: -0.32s; 
-}
-
-.typing-dot:nth-child(2) { 
-    animation-delay: -0.16s; 
-}
-
-@keyframes typingBounce {
-    0%, 80%, 100% { 
-        transform: scale(0); 
-    }
-    40% { 
-        transform: scale(1); 
-    }
-}
-
-/* Mobile Responsive */
+/* =========================================
+   12. RESPONSIVE ADJUSTMENTS
+   ========================================= */
 @media (max-width: 480px) {
-    .ai-chatbot-widget {
-        bottom: 20px;
-        right: 20px;
-    }
-    
     .chatbot-window {
         width: calc(100vw - 40px);
         height: calc(100vh - 140px);
@@ -905,25 +694,22 @@
         bottom: 90px;
     }
     
-    .chatbot-toggle-btn {
-        width: 60px;
-        height: 60px;
+    .hero-title {
+        font-size: 2.2rem;
     }
     
-    .chatbot-robot-display {
-        height: 150px;
-    }
-    
-    .message {
-        max-width: 90%;
-        font-size: 13px;
+    .section-title {
+        font-size: 1.8rem;
     }
 }
 
-/* Tablet Responsive */
-@media (min-width: 481px) and (max-width: 768px) {
-    .chatbot-window {
-        width: 360px;
-        height: 550px;
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+        padding-top: 100px;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
     }
 }
