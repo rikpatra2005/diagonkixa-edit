@@ -74,6 +74,36 @@
             z-index: 10;
         }
 
+        /* FIXED: Logo wrapper with circular white background like old website */
+        .logo-wrapper {
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .logo-wrapper .logo {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* FIXED: Brand text color - blue like old website */
+        .brand-logo {
+            color: #38A3C5 !important;
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+
+        .brand-highlight {
+            color: #6B3CE2 !important;
+        }
+
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -430,8 +460,8 @@
                     <p class="hero-description">Protect what matters most with AI-powered monitoring, instant alerts, and secure real-time surveillance.</p>
                     <div class="hero-buttons">
 
-                  <!-- Change background and border color directly -->
-                   <a href="#products" class="btn btn-custom-primary btn-lg me-3">Explore Product</a>
+                  <!-- FIXED: Explore Product button with blue gradient like old website -->
+                   <a href="#products" class="btn btn-explore-product btn-lg me-3">Explore Product</a>
 <a href="#contact-us" class="btn btn-custom-outline btn-lg">Contact Us</a>
 
 
@@ -940,7 +970,7 @@
                 <div class="col-lg-4">
                     <div class="d-flex align-items-center mb-3">
                         <div class="logo-wrapper">
-                            <img src="images/logo.png" class="logo" alt="Logo" style="height: 40px;">
+                        <img src="images/logo.png" class="logo" alt="Logo" style="height: 40px;">
                         </div>
                         <h4 class="brand-logo mx-2 mb-0">Diagonk<span class="brand-highlight">ixa</span></h4>
                     </div>
@@ -1510,5 +1540,42 @@
             });
         });
     </script>
+    
+    <!-- FIXED: Button styles for Explore Product -->
+    <style>
+        .btn-explore-product {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-explore-product:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            color: white;
+        }
+        
+        .btn-custom-outline {
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: #333;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom-outline:hover {
+            background: white;
+            border-color: white;
+            color: #333;
+            transform: translateY(-2px);
+        }
+    </style>
 </body>
 </html>
