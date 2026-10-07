@@ -175,6 +175,7 @@
         drop-shadow(0 0 50px rgba(40,184,255,.3));
 }
 
+
  /*<!-- Change background and 
  border color directly of explore product -->*/
 .btn-custom-primary {
@@ -196,6 +197,8 @@
     background-color: #03195a;
     color: white;
 }
+
+
 
 /* ==========================
    MISSION VISION
